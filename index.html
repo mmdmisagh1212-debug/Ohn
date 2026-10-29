@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل‌ساز اختصاصی WireGuard4582</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: #161616;
+            border: 1px solid #00ffcc;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.15);
+            text-align: center;
+        }
+        h1 {
+            color: #00ffcc;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #bbb;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #00ffcc;
+        }
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #00b38f;
+        }
+        #builder-panel, #login-box {
+            display: none;
+        }
+        .error {
+            color: #ff4d4d;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .success-box {
+            background: #1e3a34;
+            border: 1px solid #00ffcc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+            word-break: break-all;
+            font-size: 14px;
+            color: #00ffcc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- مرحله ۱: ورود به پنل‌ساز با رمز جدید -->
+    <div class="container" id="login-box" style="display: block;">
+        <h1>ورود به پنل‌ساز WireGuard4582</h1>
+        <div class="form-group">
+            <label>رمز عبور پنل‌ساز را وارد کنید:</label>
+            <input type="password" id="builder-pass" placeholder="رمز عبور...">
+        </div>
+        <button onclick="loginBuilder()">ورود به پنل‌ساز</button>
+        <p class="error" id="login-error">رمز اشتباه است! (رمز: WireGuard4582)</p>
+    </div>
+
+    <!-- مرحله ۲: محیط خودِ پنل‌ساز (بدون هیچ اثری از اسم‌های قبلی) -->
+    <div class="container" id="builder-panel">
+        <h1>سازنده پنل WireGuard4582</h1>
+        
+        <div class="form-group">
+            <label>نام کاربری یا عنوان پنل:</label>
+            <input type="text" id="panel-name" placeholder="مثلا: Client-01">
+        </div>
+
+        <div class="form-group">
+            <label>حجم اختصاصی (گیگابایت):</label>
+            <input type="number" id="panel-volume" placeholder="مثلا: 50">
+        </div>
+
+        <button onclick="generatePanel()">ساخت و تولید پنل جدید</button>
+        
+        <div class="success-box" id="result-box">
+            پروژه و پنل شما با موفقیت ساخته شد!<br>
+            <span id="output-link" style="color:#fff; display:block; margin-top:8px;"></span>
+        </div>
+    </div>
+
+    <script>
+        function loginBuilder() {
+            const pass = document.getElementById('builder-pass').value;
+            const error = document.getElementById('login-error');
+
+            // رمز عبور جدید پنل ساز
+            if (pass === "WireGuard4582") {
+                document.getElementById('login-box').style.display = 'none';
+                document.getElementById('builder-panel').style.display = 'block';
+            } else {
+                error.style.display = 'block';
+            }
+        }
+
+        function generatePanel() {
+            const name = document.getElementById('panel-name').value;
+            const volume = document.getElementById('panel-volume').value;
+            const resultBox = document.getElementById('result-box');
+            const outputLink = document.getElementById('output-link');
+
+            if(!name || !volume) {
+                alert('لطفاً همه فیلدها را پر کنید!');
+                return;
+            }
+
+            resultBox.style.display = 'block';
+            outputLink.innerHTML = `لینک اختصاصی WireGuard4582 برای <b>${name}</b> با حجم <b>${volume}GB</b> آماده شد.`;
+        }
+    </script>
+</body>
+  </html>
 
